@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://arearear.github.io</id>
+    <title>グーグル</title>
+    <updated>2023-11-27T10:23:24.504Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://arearear.github.io"/>
+    <link rel="self" href="https://arearear.github.io/atom.xml"/>
+    <subtitle>理論是灰色的, 唯生命之樹長青。</subtitle>
+    <logo>https://arearear.github.io/images/avatar.png</logo>
+    <icon>https://arearear.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2023, グーグル</rights>
+    <entry>
+        <title type="html"><![CDATA[LeetCode 15. 3Sum]]></title>
+        <id>https://arearear.github.io/post/leetcode-15-3sum/</id>
+        <link href="https://arearear.github.io/post/leetcode-15-3sum/">
+        </link>
+        <updated>2023-11-27T06:19:29.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://leetcode.cn/problems/3sum/description/">原题链接</a><br>
+任何一个算法<code>代码实现</code>十六字真言:</p>
+<blockquote>
+<p>有法可依, 有法必依, 执法必严, 违法必究.</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://leetcode.cn/problems/3sum/description/">原题链接</a><br>
+任何一个算法<code>代码实现</code>十六字真言:</p>
+<blockquote>
+<p>有法可依, 有法必依, 执法必严, 违法必究.</p>
+</blockquote>
+<!-- more -->
+<h2 id="闲话">闲话</h2>
+<p>法就是算法, 就是逻辑, 就是<code>Logos</code>.<br>
+太初有道，道与神同在，道就是神。</p>
+<p>有法可依: 有法可依<br>
+有法必依: 喜欢我暴力吗🤠<br>
+执法必严: 默写跟着逻辑走, 不是跟着<code>记忆力</code>走, 不是记自己之前写过好多次是怎么写的, 这里好像要加个什么<br>
+违法必究: 人肉 Debug 时把逻辑跑一遍</p>
+<blockquote>
+<p>「十六字真言」真灵啊！</p>
+</blockquote>
+<h2 id="一周目">一周目</h2>
+<p><code>is Bad End</code> 给默写哥幽默完了.</p>
+<pre><code class="language-cpp">// 收缩+双指针
+class Solution {
+public:
+    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) {
+      sort(nums.begin(), nums.end());
+      vector&lt;vector&lt;int&gt;&gt; res;
+      int n = nums.size();
+      for (int i = 0; i &lt; n - 2; ++i){
+        if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) {
+          continue;
+        }
+        int x = nums[i], j = i + 1, k = n - 1;
+        if (x + nums[i + 1] + nums[i + 2] &gt; 0) {
+          break;
+        }
+        if (x + nums[k] + nums[k - 1] &lt; 0) {
+          continue;
+        }
+        while (j &lt; k) {
+          int s = x + nums[j] + nums[k];
+          if (s &lt; 0) {
+            ++j;
+          } else if (s &gt; 0) {
+            --k;
+          } else {
+            res.push_back(vector&lt;int&gt;{x, nums[j], nums[k]});
+            ++j;
+            --k;
+            while (j &lt; k &amp;&amp; nums[j] == nums[j - 1]) {
+              ++j;
+            }
+            while (j &lt; k &amp;&amp; nums[k] == nums[k + 1]) {
+              --k;
+            }
+          }
+        }
+      }
+      return res;
+    }
+};
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[重复劳动]]></title>
+        <id>https://arearear.github.io/post/repetitive-work/</id>
+        <link href="https://arearear.github.io/post/repetitive-work/">
+        </link>
+        <updated>2023-11-27T01:05:44.000Z</updated>
+        <content type="html"><![CDATA[<p>我并没有想好写什么怎么写, 结构内容就都挺混乱的.<br>
+把游戏的术语运用到算法题上。<br>
+不过这里的游戏特指 <code>Galgame</code>, 实际上<code>Galgame</code>更应该是小说的分支而非游戏的分支.<br>
+实际上游戏和算法题并不是什么好类比的.</p>
+<p>好类比的点就在于标题: <code>重复劳动</code>.<br>
+问写算法题该不该看攻略就和问玩游戏该不该看攻略类似?</p>
+<ul>
+<li>快乐</li>
+<li>成就感</li>
+<li>无聊感</li>
+</ul>
+<p>重复劳动换取熟练度, 以时间换财富?</p>
+<p>还是闲的蛋疼<br>
+各种术语:<br>
+首先是萌娘百科的图</p>
+<figure data-type="image" tabindex="1"><img src="https://arearear.github.io/post-images/1701048042470.png" alt="term" loading="lazy"></figure>
+<pre><code class="language-moe">Good End • Normal End • Bad End • Dead End • True End/False End • Perfect End •
+Joke End • Dream End • Law End/Chaos End • No End/Open End • Bed End
+</code></pre>
+<p>看游戏攻略通关 --- 看题解<br>
+卡关看攻略(凉宫春日的追忆我到现在还在卡关) --- 看题解思路?<br>
+剧情游戏打到哪, 攻略看到哪(我确实这样做过) --- 学题解<br>
+直接下全收集存档覆盖游戏存档 --- 复制粘贴题解提交(这难道不是重复劳动?)<br>
+Good End --- 初见通关<br>
+Normal End --- 多周目默写?<br>
+Bad End --- 看题解通关?<br>
+Dead End --- 看不懂题解?<br>
+Mad End --- 走火入魔?<br>
+True End --- 有这种吗?<br>
+速通 --- 速通</p>
+<p>一命通关, 无伤, 无伤速通, 攻略完每个角色, 打通每条角色线, 连BE都要打通, 全CG收集, 全成就收集</p>
+<blockquote>
+<p>除了无伤通关, 还有没有任何人受伤通关, 环境保护通关</p>
+</blockquote>
+<p>一周目, 二周目, 三周目, 四周目, 五周目, 六周目, 七周目...<br>
+我的评价是, 游戏打打BE收集CG算了, 就不用在现实中也体验BE这种属性的东西了.<br>
+自我挑战, 自己增加限制<br>
+重复刷素材/用脚本刷素材<br>
+卖菜, 唉经典卖菜<br>
+菜就多练<br>
+复盘<br>
+技术, 练枪, 上分, 科学上分, 天梯, 比赛, 体育<br>
+挑战, 熟练度(技能/能力), 焦虑, 无聊<br>
+还是太闲了</p>
+<p>游戏, 进厂拧螺丝, 进大厂敲代码, 码农, 学习, 实践</p>
+<p>游戏理论, 文艺理论, 游戏哲学: 和我有什么关系, 我就一臭打游戏的, 又不是这值得玩什么人生必玩的一百部作品我才会玩, 就算我并不是真的想玩游戏又怎么样, 大家玩游戏都可以是各种的理由普通的理由, 我自己的普通的理由就是因为我的人生态度如此, 顺便就贯彻到游戏态度上来. 我玩游戏因为我会死, 死后最坏的情况就是那些物理主义者所相信的, 失去一切, 什么都没有, NULL, VOID.<br>
+默认只考虑如果正好运气不好就是最坏的情况, 能够接受最坏的情况的话, 那么好一点的情况就不会更困难了.<br>
+正因为我会死<br>
+&gt; 所以什么都不想做, 都无所谓做与不做?<br>
+&gt; 所以更应该把握活着?<br>
+人类的总体的色彩应该就是第二个选项, 不然我也没有机会写这篇文章. 什么浮士德?</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[LeetCode 226 翻转二叉树]]></title>
+        <id>https://arearear.github.io/post/leetcode-226-fan-zhuan-er-cha-shu/</id>
+        <link href="https://arearear.github.io/post/leetcode-226-fan-zhuan-er-cha-shu/">
+        </link>
+        <updated>2023-11-27T00:14:22.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://leetcode.cn/problems/invert-binary-tree/description/">原题链接</a></p>
+]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://leetcode.cn/problems/invert-binary-tree/description/">原题链接</a></p>
+<!-- more -->
+<p>给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。</p>
+<p><strong>示例一:</strong><br>
+<img src="https://assets.leetcode.com/uploads/2021/03/14/invert1-tree.jpg" alt="p1" loading="lazy"></p>
+<blockquote>
+<p>输入：root = [4,2,7,1,3,6,9]<br>
+输出：[4,7,2,9,6,3,1]<br>
+<strong>示例二:</strong><br>
+<img src="https://assets.leetcode.com/uploads/2021/03/14/invert2-tree.jpg" alt="p2" loading="lazy"><br>
+输入：root = [2,1,3]<br>
+输出：[2,3,1]<br>
+<strong>示例三:</strong><br>
+输入：root = []<br>
+输出：[]<br>
+<strong>提示：</strong></p>
+</blockquote>
+<ul>
+<li>树中节点数目范围在 [0, 100] 内</li>
+<li>100 &lt;= Node.val &lt;= 100</li>
+</ul>
+<hr>
+<p>一周目 (BE收集CG)<br>
+一直递归到最下层, 交换左右子树, 逐层向上交换左右子树</p>
+<pre><code class="language-cpp">// cpp
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+      if (root == nullptr) {
+        return nullptr;
+      }
+      auto rawright = root-&gt;right;
+      root-&gt;right = invertTree(root-&gt;left);
+      root-&gt;left = invertTree(rawright);
+      return root;
+    }
+};
+</code></pre>
+<hr>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[实用主义]]></title>
+        <id>https://arearear.github.io/post/pragmatism/</id>
+        <link href="https://arearear.github.io/post/pragmatism/">
+        </link>
+        <updated>2023-11-26T13:27:10.000Z</updated>
+        <content type="html"><![CDATA[<p>喜欢我实用主义吗😎<br>
+喜欢我物理主义吗<br>
+喜欢我认识论吗<br>
+喜欢我哲学吗<br>
+喜欢我 Loser 吗</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[閑話休題]]></title>
+        <id>https://arearear.github.io/post/kanwakyuudai/</id>
+        <link href="https://arearear.github.io/post/kanwakyuudai/">
+        </link>
+        <updated>2023-11-26T00:23:34.000Z</updated>
+        <content type="html"><![CDATA[<p>閑話休題。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Binary Search その壱]]></title>
+        <id>https://arearear.github.io/post/binary-search-sonoichi/</id>
+        <link href="https://arearear.github.io/post/binary-search-sonoichi/">
+        </link>
+        <updated>2023-11-26T00:08:57.000Z</updated>
+        <summary type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://img.shields.io/badge/-binary_search-brightgreen.svg" alt="test" loading="lazy"></figure>
+<blockquote>
+<p>当乔恩·本特利将二分搜索问题布置给专业编程课的学生时，百分之90的学生在花费数小时后还是无法给出正确的解答，主要因为这些错误程序在面对边界值的时候无法运行，或返回错误结果。1988年开展的一项研究显示，20本教科书里只有5本正确实现了二分搜索。不仅如此，本特利自己1986年出版的《编程珠玑》一书中的二分搜索算法存在整数溢出的问题，二十多年来无人发现。Java语言的库所实现的二分搜索算法中同样的溢出问题存在了九年多才被修复。</p>
+</blockquote>
+]]></summary>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://img.shields.io/badge/-binary_search-brightgreen.svg" alt="test" loading="lazy"></figure>
+<blockquote>
+<p>当乔恩·本特利将二分搜索问题布置给专业编程课的学生时，百分之90的学生在花费数小时后还是无法给出正确的解答，主要因为这些错误程序在面对边界值的时候无法运行，或返回错误结果。1988年开展的一项研究显示，20本教科书里只有5本正确实现了二分搜索。不仅如此，本特利自己1986年出版的《编程珠玑》一书中的二分搜索算法存在整数溢出的问题，二十多年来无人发现。Java语言的库所实现的二分搜索算法中同样的溢出问题存在了九年多才被修复。</p>
+</blockquote>
+<!-- more -->
+<p>复习一下二分查找</p>
+<p>给定上升序列[1, 2, 3, 5, 5, 5, 8, 9]<br>
+由于是上升序列, 寻找&gt;/&gt;=target的问题, return r<br>
+寻找&lt;/&lt;=target的问题, return l<br>
+IsLeft:<br>
+寻找&gt;: nums[m] &lt;= target, return r<br>
+寻找&gt;=: nums[m] &lt; target, return r<br>
+寻找&lt;: nums[m] &lt; target, return l<br>
+寻找&lt;=: nums[m] &lt;= target, return l<br>
+IsRight:<br>
+寻找&gt;: nums[m] &gt; target, return r<br>
+寻找&gt;=: nums[m] &gt;= target, return r<br>
+寻找&lt;: nums[m] &gt;= target, return l<br>
+寻找&lt;=: nums[m] &gt; target, return l<br>
+这不是需要记忆的, 理解了之后就不需要照着模板写了<br>
+找到第一个&gt;=5的元素 // 3<br>
+找到最后一个&lt;5的元素 // 2<br>
+找到第一个&gt;5的元素 // 6<br>
+找到最后一个&lt;=5的元素 // 5</p>
+<p>通用模板:<br>
+l, r = -1, len(nums), 分别指向了左右边界外一格</p>
+<pre><code class="language-python">l, r = -1, len(nums)
+while l + 1 &lt; r:
+    mid = l + (r - l) // 2
+    if (isLeft(mid)): # 满足左侧条件
+        l = mid
+    else:
+        r = mid
+</code></pre>
+<p>或者</p>
+<pre><code class="language-python">l, r = -1, len(nums)
+while l + 1 &lt; r:
+    mid = l + (r - l) // 2
+    if (isRight(mid)): # 满足右侧条件
+        r = mid
+    else:
+        l = mid
+</code></pre>
+<p>l, r = -1, len(nums) 需要特判, 当遇到需要使用nums[l], nums[r]的时候<br>
+而l, r = 0, len(nums) - 1 不需要因为这个特判</p>
+<p><code>while l + 1 &lt; r</code> 是所有模板都能通用的</p>
+<p>在 <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/">Leetcode 33 Search in rotated sorted array</a> 中, 如果全部写进一个while之中, 由于有 <code>nums[l] &lt;= target &lt;= nums[m]</code> 以及 <code>nums[m] &lt;= target &lt;= nums[r]</code>, 这时候如果l, r 未更新过, 则会 overflow, 特判起来很麻烦.<br>
+一种解决方法, 可以写成两个while, 一个while用于找到最小值, 一个while用于找到target, 然后就是<code>realm = (m + rot)%len(nums)</code>, 这样就回到了vanilla binary search</p>
+<p>这时如果不用 realm 的写法, 而写进一个 while 内, l,r 就应该设置为0, len(nums) - 1</p>
+<p>首先要问为什么模板里面<code>l, r = -1, len(nums)</code><br>
+因为我们解决二分的策略是将有序序列划为两个部分, 左边的部分不具有某种性质(Blue), 右边的部分具有某种性质(Red), 但题目有可能给出特例, 比如 Full Blue 或者 Full Red<br>
+我们来看下面的例子:<br>
+<a href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/">Leetcode 34 Find First and Last Position of Element in Sorted Array</a><br>
+[2, 2]<br>
+这个时候就是 Full Red 的情况, 所有元素都是相同的, 两个相同的元素不可能有不同的性质, 所以我们需要将l, r设置为-1, len(nums)<br>
+当<code>l, r = 0, len(nums) - 1</code> 时, l, r = 0, 1 无法进入循环<code>while l + 1 &lt; r</code>, 然后就得不到正确答案, 要特判. 而<code>l, r = -1, len(nums)</code> 时, <code>l, r = -1, 2</code>, 可以进入循环, 得到正确答案, 前者会出错是因为我们使用了不同的 while 进入条件, 原本是 <code>while l &lt;= r</code>, 而我们使用了限制更强的条件 <code>while l + 1 &lt; r</code>, 这使得我们需要在[2, 2]上再次特判</p>
+<h2 id="big-picture-就是二分问题即特判问题">Big Picture 就是二分问题即特判问题</h2>
+<blockquote>
+<p>尽管二分查找的基本思想相对简单，但细节可以令人难以招架 ... — 高德纳</p>
+</blockquote>
+<p><code>l, r = 0, len(nums) - 1</code>, <code>while l &lt;= r</code>, <code>l = mid + 1</code>, <code>r = mid - 1</code><br>
+或者<code>l, r = -1, len(nums)</code> <code>while l + 1 &lt; r</code>, <code>l = mid</code>, <code>r = mid</code><br>
+每个部分都有特殊情况, 二分问题就是特判问题, 我们在做题的时候需要自己在纸上跑一下经典的特例, 比如说[2, 2], [1], [1, 2], [2, 1], []<br>
+题目中遇到需要用到nums[l/r]的时候最好选择l, r = 0, len(nums) - 1, 这样就能避免 <code>r == len(nums)</code> 这种特判<br>
+这个模板实际上就是把mid处的特判转移到了l, r处, +1/-1是比较抽象的, 而if r == len(nums) 比较直观, 但是一定记得要写</p>
+<p><code>while l + 1 &lt; r</code> 可以保证一定能跳出循环, 但[2, 2]的情况下甚至不能进入循环<br>
+他们写mid + 1, mid - 1, 也是为了避免循环的出现, 有了<code>while l + 1 &lt; r</code>就可以直接写<code>l = m</code>/<code>r = m</code>了, 但需要处理[2, 2]的情况, 要么用<code>l, r = -1, len(nums)</code>解决, 要么特判</p>
+<p>如果不涉及 <code>nums[r]</code> 的比较, 上面的就是很好的模板, 涉及 <code>nums[r]</code> 的比较, 就应该避免使用<code>l, r = -1, len(nums)</code>, 而是使用<code>l, r = 0, len(nums) - 1</code>, 将特判转移到别的地方</p>
+<p>有时候根据题目的需要, 特判是可以在进入 <code>while</code> 之前就做的, 比如 <code>len(nums) == 0</code></p>
+<h2 id="为什么要用l-r-1-lennums">为什么要用<code>l, r = -1, len(nums)</code></h2>
+<p>就是要处理[2, 2]这种Full Red/Full Blue的情况, 如果题目并没有这种情况, 那么就可以直接使用<code>l, r = 0, len(nums) - 1</code>, 就比如说<a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/">Leetcode 33 Search in Rotated Sorted Array</a>, 输入的就是rotated sorted array, 根本不会出现Full Red/Full Blue的情况, 直接使用<code>l, r = 0, len(nums) - 1</code>, 最后得到相邻的<code>l, r</code>, 然后判断<code>nums[l]</code>和<code>nums[r]</code>就可以了</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[等待大的]]></title>
+        <id>https://arearear.github.io/post/deng-dai-da-de/</id>
+        <link href="https://arearear.github.io/post/deng-dai-da-de/">
+        </link>
+        <updated>2023-11-25T12:00:14.000Z</updated>
+        <summary type="html"><![CDATA[<p>大的要来了.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大的要来了.</p>
+<!-- more -->
+<p>我超，我不好说😨.<br>
+--- 大的来了吗?<br>
+--- 如来<br>
+--- 大的他真来了吗?<br>
+--- 如来嘛<br>
+--- 大的他到底来了没有<br>
+--- 如来</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>https://arearear.github.io/post/hello-gridea/</id>
+        <link href="https://arearear.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="https://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📋  自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+]]></content>
+    </entry>
+</feed>

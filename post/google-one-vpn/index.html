@@ -1,0 +1,183 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Google One VPN | グーグル</title>
+<link rel="shortcut icon" href="https://arearear.github.io/favicon.ico?v=1701080568030">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://arearear.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Google One VPN | グーグル - Atom Feed" href="https://arearear.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="安卓使用 v2rayNG, v2flyNG 或 Nekobox 的 Proxy 模式, WiFi 设置代理
+默认为
+V2rayNG:
+  - proxy: 127.0.0.1
+  - port: 10809
+Nekobox:
+  - pro..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://arearear.github.io">
+  <img class="avatar" src="https://arearear.github.io/images/avatar.png?v=1701080568030" alt="">
+  </a>
+  <h1 class="site-title">
+    グーグル
+  </h1>
+  <p class="site-description">
+    理論是灰色的, 唯生命之樹長青。
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+      
+        <a href="https://arearear.github.io/post/kanwakyuudai" class="menu">
+          test
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Google One VPN
+            </h2>
+            <div class="post-info">
+              <span>
+                2023-11-05
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content" v-pre>
+                <p>安卓使用 v2rayNG, v2flyNG 或 Nekobox 的 Proxy 模式, WiFi 设置代理<br>
+默认为</p>
+<pre><code class="language-bash">V2rayNG:
+  - proxy: 127.0.0.1
+  - port: 10809
+Nekobox:
+  - proxy: 127.0.0.1
+  - port: 2080
+</code></pre>
+<p>开启 Google One VPN, 完成.</p>
+<p>老账户更换付款地区方式（不用等土耳其订阅到期、不用解散家庭组）：<br>
+1.先挂上尼日利亚ip，不用全局，浏览器无痕登录YouTube管理会员界面</p>
+<p>2.先取消（不是暂停）当前的订阅，然后再续费新的订阅价格：1700NGN/月家庭版</p>
+<p>3.要重新新输入付款卡片信息和尼日利亚地址，地址随便找一个就行</p>
+<p>4.全部信息输入完成后提交即可更改完成，这样操作是不用解散家庭组，更改完成以后土耳其订阅会在账单到期日结束，下个账单日变成尼日利亚，也不用对家庭成员进行任何操作，完全方便快捷</p>
+<p>如果操作不成功可能是ip不够好</p>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://arearear.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
